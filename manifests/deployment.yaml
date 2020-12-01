@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ethereum-data-fetcher
+  namespace: default
+  labels:
+    app: ethereum-data-fetcher
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ethereum-data-fetcher
+  template:
+    metadata:
+      labels:
+        app: ethereum-data-fetcher
+    spec:
+      containers:
+      - name: ethereum-data-fetcher
+        image: ethereum-data-fetcher:40
+        command: ["/ethereum-data-fetcher"]
+        args:
+        - --cluster
